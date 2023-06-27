@@ -71,7 +71,7 @@ jobs:
           ARCH="$(dpkg --print-architecture)"
           case "${ARCH}" in
             amd64|i386:x86-64)
-              ESUM='6bb57dc6d1ef7543f7f96ce7905fd894ffbf672e1e0db22c4483927982f5c3a5'
+              ESUM='36f95b8667556c38d620c3bf251036819439ba7fab3e4bf25ded0d1db3af5f9b'
               BINARY_URL='https://cache-redirector.jetbrains.com/intellij-jbr/jbr_dcevm-17-linux-x64-b135.1.tar.gz'
               ;;
             *)
@@ -80,8 +80,9 @@ jobs:
               ;;
           esac
           curl -LfsSo /tmp/jbr.tar.gz "${BINARY_URL}"
-          echo "${ESUM} */tmp/jbr.tar.gz" | sha256sum -c -
+          echo "${ESUM} */tmp/jbr.tar.gz" | sha512sum -c -
           mkdir -p /opt/jbr
           cd /opt/jbr
           tar -xf /tmp/jbr.tar.gz --strip-components=1
           rm -rf /tmp/jbr.tar.gz
+
