@@ -80,9 +80,11 @@ jobs:
               ;;
           esac
           curl -LfsSo /tmp/jbr.tar.gz "${BINARY_URL}"
-          echo "${ESUM} */tmp/jbr.tar.gz" | sha512sum -c -
+          echo "${ESUM} /tmp/jbr.tar.gz" | sha512sum --check
           mkdir -p /opt/jbr
           cd /opt/jbr
           tar -xf /tmp/jbr.tar.gz --strip-components=1
           rm -rf /tmp/jbr.tar.gz
+        shell: bash
+
 
